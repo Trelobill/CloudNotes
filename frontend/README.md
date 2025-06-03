@@ -1,3 +1,46 @@
+# CloudNotes Frontend
+
+This is the frontend for the CloudNotes MERN application.
+
+## Features
+
+- Modern React UI with Bootstrap styling
+- Add, edit, delete, and search notes by category
+- Dark mode toggle
+- Responsive design
+
+## Getting Started
+
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Run the frontend:**
+   ```bash
+   npm start
+   ```
+
+3. **Configuration:**
+   - By default, the frontend expects the backend API at `http://localhost:5000`.
+   - You can change the API URL in your code or with a `.env` file if needed.
+
+## Folder Structure
+
+- `src/` - Source code
+- `src/App.js` - Main React component
+
+## Usage
+
+- Add a note with title, category, and description.
+- Search notes by category.
+- Edit or delete existing notes.
+- Toggle between light and dark mode.
+
+---
+
+For the backend, see [`../backend/README.md`](../backend/README.md).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
