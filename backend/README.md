@@ -19,7 +19,6 @@ This is the backend for the CloudNotes MERN application.
 2. **Set up environment variables:**
    - Create a `.env` file in `src/` with:
      ```
-     MONGO_URI=mongodb://localhost:27017/cloudnotes
      PORT=5000
      ```
 

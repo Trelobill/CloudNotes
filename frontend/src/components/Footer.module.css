@@ -1,0 +1,17 @@
+/* Styles for the Footer component.
+   Positions the footer fixed at the bottom with app branding colors. */
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #6366f1;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  letter-spacing: 1px;
+  font-weight: 500;
+  font-size: 1rem;
+  z-index: 100;
+}
