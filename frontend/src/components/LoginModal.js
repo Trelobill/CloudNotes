@@ -3,6 +3,7 @@
 
 import React from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import styles from "../App.module.css";
 
 /**
  * Props:
@@ -15,11 +16,12 @@ import { Modal, Button, Form } from "react-bootstrap";
 function LoginModal({ show, onHide, loginData, setLoginData, onLogin }) {
   return (
     <Modal show={show} onHide={onHide} centered>
-      <Modal.Header closeButton>
+      <Modal.Header closeButton className={styles.modalHeader}>
         <Modal.Title>Login</Modal.Title>
       </Modal.Header>
       <Form onSubmit={onLogin}>
         <Modal.Body>
+          {/* Email input */}
           <Form.Group className="mb-3">
             <Form.Label>Email</Form.Label>
             <Form.Control
@@ -29,8 +31,10 @@ function LoginModal({ show, onHide, loginData, setLoginData, onLogin }) {
               onChange={e => setLoginData({ ...loginData, email: e.target.value })}
               placeholder="Enter email"
               autoFocus
+              className={styles.inputRadius}
             />
           </Form.Group>
+          {/* Password input */}
           <Form.Group>
             <Form.Label>Password</Form.Label>
             <Form.Control
@@ -39,14 +43,15 @@ function LoginModal({ show, onHide, loginData, setLoginData, onLogin }) {
               value={loginData.password}
               onChange={e => setLoginData({ ...loginData, password: e.target.value })}
               placeholder="Password"
+              className={styles.inputRadius}
             />
           </Form.Group>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={onHide}>
+        <Modal.Footer className={styles.modalFooter}>
+          <Button variant="secondary" onClick={onHide} className={styles.cancelBtn}>
             Cancel
           </Button>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" className={styles.loginBtn}>
             Login
           </Button>
         </Modal.Footer>

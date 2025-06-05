@@ -4,6 +4,7 @@
 import React from "react";
 import { Card, Form, InputGroup, Button } from "react-bootstrap";
 import { PlusCircle } from "react-bootstrap-icons";
+import styles from "../App.module.css";
 
 /**
  * Props:
@@ -14,7 +15,7 @@ import { PlusCircle } from "react-bootstrap-icons";
  */
 function AddNoteForm({ title, setTitle, category, setCategory, description, setDescription, addNote }) {
   return (
-    <Card className="mb-4 shadow-sm" style={{ borderRadius: "18px" }}>
+    <Card className={`mb-4 shadow-sm ${styles.cardRadius}`}>
       <Card.Body>
         <Form
           onSubmit={e => {
@@ -28,15 +29,14 @@ function AddNoteForm({ title, setTitle, category, setCategory, description, setD
               placeholder="Title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              style={{ borderRadius: "12px" }}
-              className="me-2"
+              className={`me-2 ${styles.inputRadius}`}
             />
             <Form.Control
               type="text"
               placeholder="Category"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              style={{ borderRadius: "12px" }}
+              className={styles.inputRadius}
             />
           </InputGroup>
           <Form.Control
@@ -45,8 +45,7 @@ function AddNoteForm({ title, setTitle, category, setCategory, description, setD
             placeholder="Write a description..."
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="mb-2"
-            style={{ borderRadius: "12px" }}
+            className={`mb-2 ${styles.inputRadius}`}
             onKeyDown={e => {
               // Allow Enter+Shift for newlines, Enter alone submits
               if (e.key === "Enter" && !e.shiftKey) {
@@ -58,14 +57,7 @@ function AddNoteForm({ title, setTitle, category, setCategory, description, setD
           <Button
             type="submit"
             variant="primary"
-            style={{
-              borderRadius: "12px",
-              fontWeight: 600,
-              letterSpacing: 0.5,
-              display: "flex",
-              alignItems: "center",
-              gap: "6px",
-            }}
+            className={styles.addNoteBtn}
             disabled={!title || !category || !description}
           >
             <PlusCircle /> Add Note

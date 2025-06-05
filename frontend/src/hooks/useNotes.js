@@ -3,6 +3,11 @@
 
 import { useState, useEffect } from "react";
 
+/**
+ * useNotes custom hook
+ * @param {function} handleToast - Function to show toast notifications
+ * @returns {object} - Notes state and CRUD handlers
+ */
 export default function useNotes(handleToast) {
   // State for all notes
   const [notes, setNotes] = useState([]);
@@ -13,9 +18,13 @@ export default function useNotes(handleToast) {
   // State for edit modal input fields
   const [editInput, setEditInput] = useState({ title: "", category: "", description: "" });
 
+  // Get JWT token from localStorage
   const token = localStorage.getItem("token");
 
-  // Fetch notes for the logged-in user
+  /**
+   * Fetch notes for the logged-in user.
+   * If no token, clear notes.
+   */
   const fetchNotes = async () => {
     if (!token) {
       setNotes([]);
@@ -42,9 +51,15 @@ export default function useNotes(handleToast) {
     } else {
       setNotes([]);
     }
+    // eslint-disable-next-line
   }, [token]);
 
-  // Add a new note
+  /**
+   * Add a new note.
+   * @param {string} title
+   * @param {string} category
+   * @param {string} description
+   */
   const addNote = async (title, category, description) => {
     const res = await fetch("http://localhost:5000/api/notes", {
       method: "POST",
@@ -59,7 +74,10 @@ export default function useNotes(handleToast) {
     handleToast("Note added!", "success");
   };
 
-  // Delete a note by id
+  /**
+   * Delete a note by id.
+   * @param {string} id
+   */
   const deleteNote = async (id) => {
     await fetch(`http://localhost:5000/api/notes/${id}`, {
       method: "DELETE",
@@ -71,13 +89,21 @@ export default function useNotes(handleToast) {
     handleToast("Note deleted!", "danger");
   };
 
-  // Start editing a note (open modal and set input)
+  /**
+   * Start editing a note (open modal and set input).
+   * @param {string} id
+   * @param {string} noteTitle
+   * @param {string} noteCategory
+   * @param {string} noteDescription
+   */
   const startEdit = (id, noteTitle, noteCategory, noteDescription) => {
     setEditingId(id);
     setEditInput({ title: noteTitle, category: noteCategory, description: noteDescription });
   };
 
-  // Save changes to the edited note
+  /**
+   * Save changes to the edited note.
+   */
   const saveEdit = async () => {
     const res = await fetch(`http://localhost:5000/api/notes/${editingId}`, {
       method: "PUT",
@@ -100,6 +126,7 @@ export default function useNotes(handleToast) {
     handleToast("Note updated!", "info");
   };
 
+  // Return all state and handlers for use in components
   return {
     notes,
     setNotes,

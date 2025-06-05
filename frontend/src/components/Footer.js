@@ -10,7 +10,7 @@ import styles from "../App.module.css";
 function Footer() {
   return (
     <footer className={styles.footer}>
-      <span style={{ display: "inline-flex", alignItems: "center" }}>
+      <span className={styles.footerRow}>
         © {new Date().getFullYear()} Trelobill&nbsp;|&nbsp;
         <a
           href="https://github.com/Trelobill"

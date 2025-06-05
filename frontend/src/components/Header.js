@@ -14,25 +14,25 @@ import styles from "../App.module.css";
  * - onLogout: function to log out the user
  */
 function Header({ onLogin, onRegister, userName, onLogout }) {
-  console.log("Header userName:", userName);
   return (
     <Navbar
-      style={{
-        background: "linear-gradient(90deg, #6366f1 0%, #0ea5e9 100%)",
-      }}
+      className={`mb-4 shadow ${styles.headerNavbar}`}
       variant="dark"
-      className="mb-4 shadow"
     >
       <Container>
-        <Navbar.Brand style={{ fontWeight: 700, letterSpacing: 1 }}>
+        <Navbar.Brand className={styles.brand}>
           <Sticky className="mb-1 me-2" size={28} />
-          CloudNotes
+          CloudNotes <span className={styles.brandEmoji}>☁️</span>
         </Navbar.Brand>
         <div>
           {userName ? (
             <>
               <span className={styles.userName}>{userName}</span>
-              <Button variant="outline-light" onClick={onLogout}>
+              <Button
+                variant="outline-light"
+                onClick={onLogout}
+                className={styles.logoutBtn}
+              >
                 Logout
               </Button>
             </>
@@ -40,16 +40,15 @@ function Header({ onLogin, onRegister, userName, onLogout }) {
             <>
               <Button
                 variant="outline-light"
-                className="me-2"
+                className={`me-2 ${styles.loginBtn}`}
                 onClick={onLogin}
-                style={{ fontWeight: 500 }}
               >
                 <BoxArrowInRight className="me-1" /> Login
               </Button>
               <Button
                 variant="light"
                 onClick={onRegister}
-                style={{ fontWeight: 500, color: "#6366f1" }}
+                className={styles.registerBtn}
               >
                 <PersonCircle className="me-1" /> Register
               </Button>

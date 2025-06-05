@@ -140,31 +140,31 @@ function App() {
 
       {/* Message Card - Prompt user to log in if not authenticated */}
       {!authHook.userEmail && (
-        <Card className={`mb-4 shadow ${styles.cardRadius}`} style={{ maxWidth: 480, margin: "60px auto", background: "linear-gradient(120deg, #e0e7ff 0%, #f0f9ff 100%)", border: "none" }}>
+        <Card
+          className={`mb-4 shadow ${styles.cardRadius} ${styles.welcomeCard}`}
+        >
           <Card.Body className="text-center">
-            <div className={styles.float} style={{ fontSize: 56, color: "#6366f1", marginBottom: 16 }}>
+            <div className={styles.welcomeEmoji}>
               <span role="img" aria-label="cloud">☁️</span>
             </div>
-            <Card.Title style={{ fontWeight: 700, color: "#6366f1", fontSize: 32 }}>
+            <Card.Title className={styles.welcomeTitle}>
               Welcome to CloudNotes!
             </Card.Title>
-            <Card.Text className="mb-2" style={{ color: "#64748b", fontSize: 18 }}>
+            <Card.Text className={styles.welcomeSubtitle}>
               Your notes, always in the cloud. Safe, simple, and accessible anywhere.
             </Card.Text>
-            <Card.Text className="mb-4" style={{ color: "#334155" }}>
+            <Card.Text className={styles.welcomeText}>
               Sign up or log in to securely create, view, and manage your personal notes in the cloud.
             </Card.Text>
             <div>
               <button
-                className="btn btn-primary btn-lg me-2"
-                style={{ fontWeight: 500, background: "#6366f1", border: "none", minWidth: 120 }}
+                className={`btn btn-primary btn-lg me-2 ${styles.loginBtn}`}
                 onClick={() => authHook.setShowLogin(true)}
               >
                 Log In
               </button>
               <button
-                className="btn btn-outline-primary btn-lg"
-                style={{ fontWeight: 500, color: "#6366f1", borderColor: "#6366f1", minWidth: 120 }}
+                className={`btn btn-outline-primary btn-lg ${styles.registerBtn}`}
                 onClick={() => authHook.setShowRegister(true)}
               >
                 Register

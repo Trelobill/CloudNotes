@@ -1,8 +1,13 @@
 // Custom hook for authentication modal state and logic (login/register).
-// Handles showing/hiding modals and form state for authentication.
+// Handles showing/hiding modals, form state, and authentication actions.
 
 import { useState } from "react";
 
+/**
+ * useAuth custom hook
+ * @param {function} handleToast - Function to show toast notifications
+ * @returns {object} - Auth state and handlers
+ */
 export default function useAuth(handleToast) {
   // State for showing/hiding login and register modals
   const [showLogin, setShowLogin] = useState(false);
@@ -12,15 +17,16 @@ export default function useAuth(handleToast) {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
 
   // State for register form fields
-  const [registerData, setRegisterData] = useState({ username: "", email: "", password: "" });
+  const [registerData, setRegisterData] = useState({ username: "", email: "", password: "", confirmPassword: "" });
 
-  // State for user email
+  // State for user email and name (persisted in localStorage)
   const [userEmail, setUserEmail] = useState(localStorage.getItem("email") || "");
-
-  // State for user name
   const [userName, setUserName] = useState(localStorage.getItem("username") || "");
 
-  // Handles login form submission (demo only)
+  /**
+   * Handles login form submission.
+   * Sends credentials to backend and stores token/user info on success.
+   */
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -33,9 +39,9 @@ export default function useAuth(handleToast) {
       if (res.ok && data.token) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("email", loginData.email);
-        localStorage.setItem("username", data.username); // <-- use backend username
+        localStorage.setItem("username", data.username);
         setUserEmail(loginData.email);
-        setUserName(data.username); // <-- use backend username
+        setUserName(data.username);
         setShowLogin(false);
         handleToast("Logged in!", "success");
       } else {
@@ -46,7 +52,10 @@ export default function useAuth(handleToast) {
     }
   };
 
-  // Handles register form submission (demo only)
+  /**
+   * Handles register form submission.
+   * Sends registration data to backend and stores token/user info on success.
+   */
   const handleRegister = async (e) => {
     e.preventDefault();
     if (registerData.password !== registerData.confirmPassword) {
@@ -75,7 +84,10 @@ export default function useAuth(handleToast) {
     }
   };
 
-  // Add a logout function
+  /**
+   * Handles user logout.
+   * Clears user info from localStorage and state.
+   */
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
@@ -85,6 +97,7 @@ export default function useAuth(handleToast) {
     handleToast("Logged out", "info");
   };
 
+  // Return all state and handlers for use in components
   return {
     showLogin,
     setShowLogin,
