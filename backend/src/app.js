@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
+const path = require("path");
+
 const notesRouter = require("./routes/notes");
 const authRouter = require("./routes/auth");
 
@@ -23,11 +25,21 @@ app.use("/api/auth", authRouter);
 const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
 
+if(process.env.NODE_ENV === "production") {
+  // Serve static files from the React frontend app
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+  // Handle React routing, return all requests to React app
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+  });
+}
+
 // Connect to MongoDB and start the server
 mongoose
   .connect(MONGO_URI)
   .then(() => {
-    app.listen(PORT || 5000, "0.0.0.0", () =>
+    app.listen(PORT, () =>
       console.log(`Server running on port ${PORT || 5000}`)
     );
   })

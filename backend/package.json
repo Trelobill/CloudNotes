@@ -3,8 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "21.7.3",
+    "npm": "10.5.0"
+  },
   "scripts": {
-    "start": "node src/app.js"
+    "client-install": "cd ../frontend && npm install --prefix ../frontend",
+    "server": "nodemon src/app.js",
+    "client": "cd ../frontend && npm start --prefix ../frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "node src/app.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix ../frontend && npm run build --prefix ../frontend"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +26,8 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.15.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
   }
 }
