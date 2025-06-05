@@ -25,13 +25,15 @@ app.use("/api/auth", authRouter);
 const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
 
-if(process.env.NODE_ENV === "production") {
+var __dirname = path.resolve();
+
+if (process.env.NODE_ENV === "production") {
   // Serve static files from the React frontend app
-  app.use(express.static(path.join(__dirname, "../frontend/build")));
+  app.use(express.static(path.join(__dirname, "/frontend/build")));
 
   // Handle React routing, return all requests to React app
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+  app.get(/(.*)/, (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
   });
 }
 
@@ -39,8 +41,8 @@ if(process.env.NODE_ENV === "production") {
 mongoose
   .connect(MONGO_URI)
   .then(() => {
-    app.listen(PORT, () =>
-      console.log(`Server running on port ${PORT || 5000}`)
-    );
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT || 5000}`);
+    });
   })
   .catch((err) => console.error("MongoDB connection error:", err));
