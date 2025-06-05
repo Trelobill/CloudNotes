@@ -164,7 +164,7 @@ function App() {
                 Log In
               </button>
               <button
-                className={`btn btn-outline-primary btn-lg ${styles.registerBtn}`}
+                className={`btn btn-light btn-lg ${styles.registerBtn}`}
                 onClick={() => authHook.setShowRegister(true)}
               >
                 Register

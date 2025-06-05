@@ -39,7 +39,7 @@ function Header({ onLogin, onRegister, userName, onLogout }) {
           ) : (
             <>
               <Button
-                variant="outline-light"
+                variant="btn btn-primary"
                 className={`me-2 ${styles.loginBtn}`}
                 onClick={onLogin}
               >
