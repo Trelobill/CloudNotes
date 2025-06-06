@@ -30,7 +30,7 @@ export default function useNotes(handleToast) {
       setNotes([]);
       return;
     }
-    const res = await fetch("https://cloudnotes-backend.onrender.com/api/notes", {
+    const res = await fetch("https://cloudnotes-agae.onrender.com/api/notes", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -61,7 +61,7 @@ export default function useNotes(handleToast) {
    * @param {string} description
    */
   const addNote = async (title, category, description) => {
-    const res = await fetch("https://cloudnotes-backend.onrender.com/api/notes", {
+    const res = await fetch("https://cloudnotes-agae.onrender.com/api/notes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +79,7 @@ export default function useNotes(handleToast) {
    * @param {string} id
    */
   const deleteNote = async (id) => {
-    await fetch(`https://cloudnotes-backend.onrender.com/api/notes/${id}`, {
+    await fetch(`https://cloudnotes-agae.onrender.com/api/notes/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -105,7 +105,7 @@ export default function useNotes(handleToast) {
    * Save changes to the edited note.
    */
   const saveEdit = async () => {
-    const res = await fetch(`https://cloudnotes-backend.onrender.com/api/notes/${editingId}`, {
+    const res = await fetch(`https://cloudnotes-agae.onrender.com/api/notes/${editingId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
