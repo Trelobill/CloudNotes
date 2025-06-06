@@ -47,8 +47,8 @@ export default function useAuth(handleToast) {
       } else {
         handleToast(data.message || "Login failed", "danger");
       }
-    } catch {
-      handleToast("Server error", "danger");
+    } catch (err) {
+      handleToast(err.message ? `Server error: ${err.message}` : "Server error", "danger");
     }
   };
 
@@ -79,8 +79,8 @@ export default function useAuth(handleToast) {
       } else {
         handleToast(data.message || "Registration failed", "danger");
       }
-    } catch {
-      handleToast("Server error", "danger");
+    } catch (err) {
+      handleToast(err.message ? `Server error: ${err.message}` : "Server error", "danger");
     }
   };
 
