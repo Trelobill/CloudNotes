@@ -231,21 +231,25 @@
 
 /* Toast container custom position and z-index */
 .toastContainer {
-  z-index: 2000;
+  top: 30px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 1055;
 }
 
 /* Toast styling */
 .toast {
   border-radius: 12px !important;
-  min-width: 220px;
-  box-shadow: 0 2px 16px #6366f144;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  min-width: 300px;
 }
 
 /* Toast body styling */
 .toastBody {
-  color: #fff !important;
+  font-size: 1.1rem;
   font-weight: 500;
-  letter-spacing: 0.5px;
+  color: #222;
+  text-align: center;
 }
 
 /* Welcome card for unauthenticated users */

@@ -12,7 +12,7 @@ import styles from "../App.module.css";
  */
 function ToastMessage({ toast, setToast }) {
   return (
-    <ToastContainer position="bottom-end" className={`p-3 ${styles.toastContainer}`}>
+    <ToastContainer position="top-center" className={`p-3 ${styles.toastContainer}`}>
       <Toast
         show={toast.show}
         bg={toast.bg}
